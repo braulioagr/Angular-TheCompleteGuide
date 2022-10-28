@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row text-center">
+        <h1>Basic Assignment 2</h1>
+    </div>
+
+    <br>
+   
+    <label> username</label>
+   
+    <br>
+   
+    <input
+        class="form-control"
+        type="text"
+        [(ngModel)]="this.username">
+
+    <br>
+
+    <p> {{ (this.username !== '')  ? 'The user name is : ' + this.username : '' }} </p>
+
+    <br>
+
+    <button
+        class="btn btn-primary"
+        (click)="onClearName()"
+        [disabled]="this.username == ''">
+        clear name
+    </button>
+
+</div>
