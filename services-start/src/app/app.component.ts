@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountsService } from './service/accounts.service';
 
 @Component({
   selector: 'app-root',
@@ -6,26 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  accounts = [
-    {
-      name: 'Master Account',
-      status: 'active'
-    },
-    {
-      name: 'Testaccount',
-      status: 'inactive'
-    },
-    {
-      name: 'Hidden Account',
-      status: 'unknown'
-    }
-  ];
+
+
+  constructor( private accountsService: AccountsService){}
 
   onAccountAdded(newAccount: {name: string, status: string}) {
-    this.accounts.push(newAccount);
+    this.accountsService.addAcount( newAccount );
   }
 
   onStatusChanged(updateInfo: {id: number, newStatus: string}) {
-    this.accounts[updateInfo.id].status = updateInfo.newStatus;
+    this.accountsService.updateStatus( updateInfo );
   }
+
+  
+  public get accounts() : { name: string, status: string }[]  {
+    return this.accountsService.accounts;
+  }
+  
+
 }
